@@ -3,12 +3,14 @@
 **/.idea
 *.iml
 rebel.xml
+/blog-manage/src/main/resources/application-pro.yml
+/blog-portal/src/main/resources/application-pro.yml
 
 ## backend
 /target/
-/config/
 **/target
 **/logs
 
 ## front
 **/*.lock
+/config/personal/
