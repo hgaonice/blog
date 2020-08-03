@@ -30,7 +30,7 @@ public class ElasticSearchInitialConfig {
      */
     @PostConstruct
     public void initEsIndex(){
-        rabbitMqUtils.send(RabbitMqConstants.REFRESH_ES_INDEX_QUEUE,"dbblog-search init index");
+        rabbitMqUtils.send(RabbitMqConstants.REFRESH_ES_INDEX_QUEUE,"blog-search init index");
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setAutomaticRecoveryEnabled(false);
     }
