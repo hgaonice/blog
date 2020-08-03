@@ -14,3 +14,4 @@ rebel.xml
 ## front
 **/*.lock
 /config/personal/
+../logs
