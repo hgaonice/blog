@@ -1,0 +1,149 @@
+server:
+  port: 8000
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://39.102.28.164:3306/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+      username: gaoh
+      password: gh922104
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      #validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+  # redis 配置
+  redis:
+    host: 123.57.215.33
+    port: 6379
+    timeout: 6s #连接池超时时长
+    lettuce:
+      pool:
+        max-active: 1000 #连接池最大连接数
+        max-wait: -1ms #连接池最大阻塞等待时间
+        max-idle: 10 #连接池最大空闲连接
+        min-idle: 5 #连接池最小空闲连接
+    password: 'gh922104'
+  # elasticsearch配置
+  data:
+    elasticsearch:
+      cluster-name: gaoh
+      cluster-nodes: 127.0.0.1:9300
+  # rabbitMQ配置
+  rabbitmq:
+    host: 123.57.215.33
+    port: 5672
+    username: guest
+    password: guest
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  #json 时间戳统一转换
+  jackson:
+    date-format:   yyyy-MM-dd HH:mm:ss
+    time-zone:   GMT+8
+  #开启AOP
+  aop:
+    proxy-target-class: true
+  #配置freemarker
+  freemarker:
+    # 设置模板后缀名
+    suffix: .ftl
+    # 设置文档类型
+    content-type: text/html
+    # 设置页面编码格式
+    charset: UTF-8
+    # 设置页面缓存
+    cache: false
+    prefer-file-system-access: false
+    # 设置ftl文件路径
+    template-loader-path:
+    - classpath:/templates
+  # 设置静态文件路径，js,css等
+  mvc:
+    static-path-pattern: /**
+  resource:
+    static-locations: classpath:/static/,classpath:/public/
+#mybatis-plus
+mybatis-plus:
+  global-config:
+    #刷新Mapper，只在开发环境打开
+    refresh: true
+oss:
+  qiniu:
+    domain: http://oss.dblearn.cn
+    prefix: dbblog
+    accessKey: ENC(pVGOa/io1AnqiEKkDTVORO3W8nzn+vbOl53TeRBIGgCuWvqUEzOAdIBLmdpoYVmsDHESGVc2QzY=)
+    secretKey: ENC(UXM3TEuaIuLrPdKuDASHoZExQyOrgGl7PqV/iB0EbHOFhnUSF3bMol8D2qh+QlthccS5QD0fHbM=)
+    bucketName: test
+
+jasypt:
+  encryptor:
+    password: dbblog-jasypt
+
+project:
+  path:
+    #文件上传根目录 设置
+    upload: D://upFiles?usr//local//upFiles
+    #webapp文件路径
+    webapp: D://webapp?usr//local//webapp
+
+
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+    instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
+    preferIpAddress: true #访问路径可以显示IP地址
+
+  client:
+    registerWithEureka: true
+    fetchRegistry: true  # 服务发现，false表示自己不从Eureka服务中获取注册信息
+    serviceUrl: # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口）
+      defaultZone: http://127.0.0.1:8002/eureka/
+
+    # 过期剔除时间，即服务续约到期时间（缺省为90s）
+    registry-fetch-interval-seconds: 30
+ribbon:
+  eureka:
+    enabled: true
+
+feign:
+  httpclient:
+    enabled: true
+
+feign-client:
+  name: portal
+  path: blog
+
+swagger:
+  is:
+    enable: true
+logging:
+  level:
+    com.gaoh: debug

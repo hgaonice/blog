@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>blog</artifactId>
+        <groupId>com.gao</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>blog-manage</artifactId>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gao</groupId>
+            <artifactId>blog-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--feign相关依赖begin-->
+        <!-- 导入Eureka客户端的依赖，将 微服务提供者 注册进 Eureka -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- feign远程调用服务 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <!--<version>${spring-cloud.version}</version>-->
+        </dependency>
+        <!-- httpClient -->
+        <dependency>
+            <groupId>com.netflix.feign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>8.18.0</version>
+        </dependency>
+
+
+        <!--导入hystrix依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!--feign相关依赖end-->
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
