@@ -1,0 +1,20 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#        server-addr: 10.10.101.176:8848
+      config:
+        file-extension: yml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        shared-dataids: blog-portal.yml
+feign:
+  sentinel:
+    enabled: true
+resttemplate:
+  sentinel:
+    enabled: true
