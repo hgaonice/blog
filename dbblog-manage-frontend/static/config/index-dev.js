@@ -6,5 +6,7 @@
   // api接口请求地址
   // window.SITE_CONFIG['baseUrl'] = 'http://182.254.171.61:8080/dbBlog'
   // window.SITE_CONFIG['baseUrl'] = 'http://localhost:8080/dbblog'
-  window.SITE_CONFIG['baseUrl'] = 'http://localhost:8090/blog/'
+  // window.SITE_CONFIG['baseUrl'] = 'http://localhost:8090/blog/'
+  // window.SITE_CONFIG['baseUrl'] = 'http://localhost:7001'
+  window.SITE_CONFIG['baseUrl'] = 'http://localhost:7777/blog-manage'
 })()
